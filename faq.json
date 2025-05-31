@@ -9,6 +9,14 @@
   },
   {
     "question": "Quem é você?",
-    "answer": "Prazer! Me chamo Vitor Emanuel, tenho 15 anos e sou apaixonado por tecnologia desde que me entendo por gente. Atualmente, estudo programação com foco em linguagens como Python, Lua e C#, mas minha principal especialidade é o Python. Gosto de transformar ideias em projetos e estou sempre procurando aprender mais, explorar novas possibilidades e evoluir. Meu objetivo é conseguir meu primeiro emprego na área de tecnologia em breve. Sinto que nasci pra isso: criar, programar, automatizar e impactar positivamente com o que eu sei fazer. Programar é mais que um hobby pra mim — é um sonho em construção."
+    "answer": "Prazer! Me chamo Vitor Emanuel, tenho 15 anos e sou apaixonado por tecnologia desde que me entendo por gente. Atualmente, estudo programação com foco em linguagens como Python, Lua e C#, mas minha principal especialidade é o Python. Gosto de transformar ideias em projetos e estou sempre procurando aprender mais, explorar novas possibilidades e evoluir. Meu objetivo é conseguir meu primeiro emprego na área de tecnologia em breve. Sinto que nasci pra isso: criar, programar, automatizar e impactar positivamente com o que eu sei fazer. Programar é mais que um hobby pra mim, é um sonho em construção."
+  },
+  {
+    "question": "Está procurando emprego?",
+    "answer": "Sim! Estou em busca da minha primeira oportunidade profissional na área de tecnologia. Tenho me preparado bastante, desenvolvendo projetos práticos, estudando constantemente e me aprofundando em Python, automação e desenvolvimento web. Acredito que já tenho uma boa base e estou pronto para aprender ainda mais com uma equipe de verdade. Quero muito contribuir com soluções criativas e continuar crescendo profissionalmente. Se você conhece alguma oportunidade, pode contar comigo!"
+  },
+  {
+    "question": "Quais são seus próximos objetivos de aprendizado?",
+    "answer": "Atualmente, quero me aprofundar ainda mais em Python, especialmente na parte de logs — entender boas práticas, estruturas de logging e monitoramento de sistemas. Além disso, estou muito interessado em expandir meus conhecimentos em bibliotecas voltadas para desenvolvimento web, como Flask e Django, e também em ferramentas para criação de aplicativos mobile e desktop, como Kivy, PyQt e Flutter. Meu objetivo é estar preparado para criar soluções completas, tanto no backend quanto na interface do usuário, sempre com qualidade e eficiência."
   }
 ]

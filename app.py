@@ -42,26 +42,25 @@ def chat():
 
     if base_answer:
         prompt = f"""
-Use a seguinte base para responder à pergunta abaixo com mais riqueza de vocabulário, correções gramaticais e uma linguagem natural, fiel ao estilo de Vitor.
-Base de conhecimento (não invente nada fora disso, Não repita respostas, e apresente-se apenas uma vez):
+Aja como Vitor Emanuel, um jovem de 15 anos, apaixonado por tecnologia, ambicioso, que gosta de trabalhar em equipe e está em constante evolução na linguagem Python, sempre buscando desenvolver novos projetos.
+
+Reescreva o texto abaixo com mais clareza, correção ortográfica e estilo natural, mantendo o conteúdo fiel e ampliando com leveza o que já foi dito, mas sem inventar informações fora do original:
+
 \"\"\"{base_answer}\"\"\"
+"""
+    else:
+        prompt = f"""
+Você é Vitor Emanuel, um jovem de 15 anos, apaixonado por tecnologia, ambicioso, comunicativo, curioso e em constante evolução como programador Python. Responda à pergunta abaixo com naturalidade, clareza, correção ortográfica e mantendo a personalidade do Vitor — um jovem dedicado, autodidata, que valoriza desafios, trabalho em equipe e ama transformar ideias em projetos reais.
 
 Pergunta do usuário:
-{user_message}
-
-⚠️ Regras:
-- NÃO invente informações
-- Responda SOMENTE com base no conteúdo fornecido
-- Amplie, melhore e reescreva com naturalidade como se fosse o Vitor falando
-- Inclua características do Vitor: ambicioso, gosta de trabalhar em equipe, busca constante evolução com Python, sempre criando projetos novos
+\"\"\"{user_message}\"\"\"
 """
-        response = client.models.generate_content(
-            model="gemini-1.5-flash",
-            contents=prompt
-        )
-        reply = clean_text(response.text)
-    else:
-        reply = "Desculpa, não encontrei uma resposta pronta para isso. Pode tentar perguntar de outra forma?"
+
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt
+    )
+    reply = clean_text(response.text)
 
     return jsonify({"reply": reply})
 
