@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat com IA - Vitor Emanuel</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="messages" id="chatBox"></div>
+
+      <div class="suggestions">
+        <div class="suggestion" onclick="sendSuggestion('Quais são seus projetos favoritos?')">Quais são seus projetos favoritos?</div>
+        <div class="suggestion" onclick="sendSuggestion('Qual sua experiência com Python?')">Qual sua experiência com Python?</div>
+        <div class="suggestion" onclick="sendSuggestion('Quem é você?')">Quem é você?</div>
+      </div>
+
+      <div class="input-container">
+        <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+        <button onclick="sendMessage()" aria-label="Enviar">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      async function sendMessage() {
+        const input = document.getElementById("userInput");
+        const message = input.value.trim();
+        if (!message) return;
+
+        appendMessage("Você", message, "user");
+        input.value = "";
+
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message }),
+        });
+
+        const data = await response.json();
+        appendMessage("Vitor (IA)", data.reply, "bot");
+      }
+
+      function sendSuggestion(text) {
+        document.getElementById("userInput").value = text;
+        sendMessage();
+      }
+
+      function appendMessage(sender, text, type) {
+        const chatBox = document.getElementById("chatBox");
+        const div = document.createElement("div");
+        div.className = `message ${type}`;
+        div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+        chatBox.appendChild(div);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+    </script>
+  <div class="background-overlay"></div>
+  </body>
+</html>

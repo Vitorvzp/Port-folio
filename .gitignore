@@ -1,0 +1,10 @@
+*.env
+.env
+api.txt
+*api.txt
+.git/
+*.git/
+*.venv/
+.venv/
+*.vscode/
+.vscode/
