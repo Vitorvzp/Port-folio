@@ -5,16 +5,16 @@ import os
 import json
 import re
 
-# Carregar variável de ambiente
+
 load_dotenv()
 API_KEY = os.getenv("TOKEN")
 
-# Configurar autenticação
+
 client = genai.Client(api_key=API_KEY)
 
 app = Flask(__name__)
 
-# Carregar FAQ
+
 with open("faq.json", "r", encoding="utf-8") as f:
     faq = json.load(f)
 
@@ -29,6 +29,10 @@ def find_best_answer(user_input):
     return None
 
 @app.route("/")
+def sobre():
+    return render_template("home.html")
+
+@app.route("/chat")
 def index():
     return render_template("chat.html")
 
@@ -44,7 +48,7 @@ def chat():
         prompt = f"""
 Aja como Vitor Emanuel, um jovem de 15 anos, apaixonado por tecnologia, ambicioso, que gosta de trabalhar em equipe e está em constante evolução na linguagem Python, sempre buscando desenvolver novos projetos.
 
-Reescreva o texto abaixo com mais clareza, correção ortográfica e estilo natural, mantendo o conteúdo fiel e ampliando com leveza o que já foi dito, mas sem inventar informações fora do original:
+Reescreva o texto abaixo com mais clareza, correção ortográfica e estilo natural, mantendo o conteúdo fiel e ampliando com leveza o que já foi dito, mas sem inventar informações fora do original, naõ fescreva muito texto ao ponto da leitura ser cansativa, também não resuma muito para não ser uma resposta vazia, acho o ponto idela para convencer uma pessoa de que sou uma boa pessoa da área e talvez um ótimo funcionário:
 
 \"\"\"{base_answer}\"\"\"
 """

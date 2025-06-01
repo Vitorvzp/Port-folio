@@ -19,7 +19,6 @@ body {
 }
 
 
-/* Coloque antes de .chat-container */
 .background-overlay {
   position: fixed;
   top: 0;

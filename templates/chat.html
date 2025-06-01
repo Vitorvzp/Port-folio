@@ -13,14 +13,15 @@
     <div class="chat-container">
       <div class="messages" id="chatBox"></div>
 
-      <div class="suggestions">
-        <div class="suggestion" onclick="sendSuggestion('Quais são seus projetos favoritos?')">Quais são seus projetos favoritos?</div>
-        <div class="suggestion" onclick="sendSuggestion('Qual sua experiência com Python?')">Qual sua experiência com Python?</div>
-        <div class="suggestion" onclick="sendSuggestion('Quem é você?')">Quem é você?</div>
+      <div class="suggestions" id="suggestionsContainer">
       </div>
 
       <div class="input-container">
-        <input type="text" id="userInput" placeholder="Digite sua mensagem..." />
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Digite sua mensagem..."
+        />
         <button onclick="sendMessage()" aria-label="Enviar">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
@@ -30,6 +31,50 @@
     </div>
 
     <script>
+      const allSuggestions = [
+        "Quem é você?",
+        "Quais são seus projetos favoritos?",
+        "Qual sua experiência com Python?",
+        "Quais são seus próximos objetivos?",
+        "Você já trabalhou em equipe?",
+        "O que você acrescentaria em uma empresa?",
+        "Quais tecnologias deseja aprender?",
+        "Qual framework web você prefere?",
+        "Como lida com desafios em programação?",
+        "Como é sua rotina de estudos?",
+        "Quais bibliotecas você mais usa?",
+        "Pretende desenvolver aplicativos móveis?",
+      ];
+
+      const usedSuggestions = new Set();
+
+      function getRandomSuggestion() {
+        const available = allSuggestions.filter((s) => !usedSuggestions.has(s));
+        if (available.length === 0) return null;
+        const random = available[Math.floor(Math.random() * available.length)];
+        usedSuggestions.add(random);
+        return random;
+      }
+
+      function renderSuggestions() {
+        const container = document.getElementById("suggestionsContainer");
+        container.innerHTML = "";
+
+        for (let i = 0; i < 3; i++) {
+          const suggestion = getRandomSuggestion();
+          if (!suggestion) break;
+
+          const div = document.createElement("div");
+          div.className = "suggestion";
+          div.textContent = suggestion;
+          div.onclick = () => {
+            sendSuggestion(suggestion);
+            renderSuggestions();
+          };
+          container.appendChild(div);
+        }
+      }
+
       async function sendMessage() {
         const input = document.getElementById("userInput");
         const message = input.value.trim();
@@ -61,7 +106,10 @@
         chatBox.appendChild(div);
         chatBox.scrollTop = chatBox.scrollHeight;
       }
+
+      renderSuggestions();
     </script>
-  <div class="background-overlay"></div>
+
+    <div class="background-overlay"></div>
   </body>
 </html>
